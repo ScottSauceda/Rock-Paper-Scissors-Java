@@ -115,14 +115,18 @@ public class Main {
                     gameChoicePlayer1 = input.nextLine();
 
 //                    call generateRandomIntIntRange to generate random number to help make random choice for computer
-                    randomInt = generateRandomIntIntRange(1, 9);
+//                    randomInt = generateRandomIntIntRange(1, 9);
 
-                    computerChoice = generateRandomChoice(randomInt);
+//                    computerChoice = generateRandomChoice(randomInt);
 
 
 //                    System.out.println("Random Game Choice: " + randomGameChoice);
 
-                    finalOpponentchoice = computerChoice;
+                    Computer computerPlayer = new Computer();
+
+                    randomInt = computerPlayer.generateRandomIntIntRange(1,9);
+
+                    finalOpponentchoice = computerPlayer.generateRandomChoice(randomInt);
 
                 } else {
                     System.out.println("Ooops, something went wrong!1!1!1");
