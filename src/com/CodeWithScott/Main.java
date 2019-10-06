@@ -10,6 +10,39 @@ public class Main {
         return r.nextInt((max - min) + 1) + min;
     }
 
+    public static String generateRandomChoice(int num){
+        //                    if to set computers choice based on randomInteger
+
+        String computerChoice = "";
+
+        if(num == 1 || num == 4 || num == 7){
+            computerChoice = "paper";
+            System.out.println("Computer chose : " + computerChoice + "\n");
+        } else if (num == 2 || num == 5 || num == 8){
+            computerChoice = "rock";
+            System.out.println("Computer chose : " + computerChoice + "\n");
+        } else if (num == 3 || num == 6 || num == 9){
+            computerChoice = "scissors";
+            System.out.println("Computer chose : " + computerChoice + "\n");
+        } else {
+            System.out.println("Oops, something went wrong!");
+        }
+
+        return computerChoice;
+    }
+
+    public static void checkWinnerOfGame(String player1Choice, String opponentChoice){
+//        if else logic to check who won the game
+        if(player1Choice.equals("rock") && opponentChoice.equals("scissors") || player1Choice.equals("scissors") && opponentChoice.equals("paper") || player1Choice.equals("paper") && opponentChoice.equals("rock")){
+            System.out.println("Player1 won! \n");
+        } else if(opponentChoice.equals("rock") && player1Choice.equals("scissors") || opponentChoice.equals("scissors") && player1Choice.equals("paper") || opponentChoice.equals("paper") && player1Choice.equals("rock")){
+            System.out.println("Player 1 Lost! \n");
+        } else {
+            System.out.println("It's a tie game! \n");
+        }
+
+    }
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to Rock, Paper, Scissors \n");
@@ -22,9 +55,12 @@ public class Main {
 
         String gameChoicePlayer2 = "";
 
-        int randomGameChoice;
+        int randomInt;
 
         String computerChoice = "";
+
+        String finalOpponentchoice = "";
+
 
         do {
 
@@ -65,37 +101,38 @@ public class Main {
 
                     gameChoicePlayer2 = input.nextLine();
 
-                    System.out.println("Player2 chose : " + gameChoicePlayer1 + "\n");
-//                    else if t
+                    System.out.println("Player2 chose : " + gameChoicePlayer2 + "\n");
+
+
+                    finalOpponentchoice = gameChoicePlayer2;
+
+//                    else if to decide mode choice of computer
                 } else if(gameModeChoice.equalsIgnoreCase("computer")){
-                    randomGameChoice = generateRandomIntIntRange(1, 9);
 
-                    if(randomGameChoice == 1 || randomGameChoice == 4 || randomGameChoice == 7){
-                        computerChoice = "paper";
-                        System.out.println("Computer chose : " + computerChoice + "\n");
-                    } else if (randomGameChoice == 2 || randomGameChoice == 5 || randomGameChoice == 8){
-                        computerChoice = "rock";
-                        System.out.println("Computer chose : " + computerChoice + "\n");
-                    } else if (randomGameChoice == 3 || randomGameChoice == 6 || randomGameChoice == 9){
-                        computerChoice = "scissors";
-                        System.out.println("Computer chose : " + computerChoice + "\n");
-                    } else {
-                        System.out.println("Ooops, something went wrong!");
-                    }
+                    System.out.println("Player 1 will go first.");
+                    System.out.println("Type 'rock', 'paper', or 'scissors'.");
 
-                    System.out.println("Random Game Choice: " + randomGameChoice);
+                    gameChoicePlayer1 = input.nextLine();
+
+//                    call generateRandomIntIntRange to generate random number to help make random choice for computer
+                    randomInt = generateRandomIntIntRange(1, 9);
+
+                    computerChoice = generateRandomChoice(randomInt);
 
 
-                    if(gameChoicePlayer1.equals("rock") && computerChoice.equals("scissors") || gameChoicePlayer1.equals("scissors") && computerChoice.equals("paper") || gameChoicePlayer1.equals("paper") && computerChoice.equals("rock")){
-                        System.out.println("Player1 won! \n");
-                    } else if(computerChoice.equals("rock") && gameChoicePlayer1.equals("scissors") || computerChoice.equals("scissors") && gameChoicePlayer1.equals("paper") || computerChoice.equals("paper") && gameChoicePlayer1.equals("rock")){
-                        System.out.println("Computer won! \n");
-                    } else {
-                        System.out.println("It's a tie game! \n");
-                    }
+//                    System.out.println("Random Game Choice: " + randomGameChoice);
+
+                    finalOpponentchoice = computerChoice;
+
+                } else {
+                    System.out.println("Ooops, something went wrong!1!1!1");
                 }
 
 
+                checkWinnerOfGame(gameChoicePlayer1, finalOpponentchoice);
+
+
+//                else if to continue if else logic for menuChoice
             } else if(menuChoice.equalsIgnoreCase("history")) {
                 System.out.println("Yes you have game history. \n");
             } else if(menuChoice.equalsIgnoreCase("quit")) {
@@ -105,6 +142,7 @@ public class Main {
             }
 
 
+//            checks condition if player has chosen to quit the game
         } while(!menuChoice.equals("quit"));
 
 //        System.out.println("Computer picks: scissors");
@@ -120,3 +158,4 @@ public class Main {
 
     }
 }
+
