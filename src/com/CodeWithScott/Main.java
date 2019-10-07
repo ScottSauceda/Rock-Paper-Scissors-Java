@@ -1,7 +1,12 @@
 package com.CodeWithScott;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.Buffer;
+import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -28,6 +33,22 @@ public class Main {
                 System.out.println("You did not enter a valid statement.You must enter 'rock' 'paper' or 'scissors'.");
                 return null;
             }
+    }
+
+    public static void writeGameHistory(String fileName ,String gameChoicePlayer1, String finalOpponentchoice, String playerWinOrLose) throws IOException {
+        File file = new File(fileName);
+        BufferedWriter writer = null;
+
+        LocalDateTime dateTime = LocalDateTime.now();
+
+
+        try{
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write(dateTime + "\n" + playerWinOrLose + " : " + gameChoicePlayer1 + ", " + finalOpponentchoice);
+        }
+        finally {
+            writer.close();
+        }
     }
 
 
@@ -131,7 +152,11 @@ public class Main {
 
                     player1.addToGameHistory(gameChoicePlayer1, finalOpponentchoice, playerWinOrLose);
 
-
+                    try {
+                        writeGameHistory("output.txt", gameChoicePlayer1, finalOpponentchoice, playerWinOrLose);
+                    } catch(IOException e){
+                        System.out.println("Error while writing into the file: " + e.getMessage());
+                    }
 
                 } else {
 
