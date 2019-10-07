@@ -148,7 +148,7 @@ public class Main {
 
 //            checks condition if player has chosen to quit the game
         } while(!menuChoice.equals("quit"));
-        
+
 
     }
 }
