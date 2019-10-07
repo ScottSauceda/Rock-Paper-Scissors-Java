@@ -2,6 +2,7 @@ package com.CodeWithScott;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Player {
@@ -10,6 +11,7 @@ public class Player {
     private String playerGameStat;
     private String playerWinOrLose;
     private String finalOpponentchoice;
+    private Boolean isValidChoice;
     private int playerScore;
 
     ArrayList<String> playerHistory = new ArrayList<String>();
@@ -17,11 +19,24 @@ public class Player {
     Scanner input = new Scanner(System.in);
 
 
-    public void setPlayerChoice(){
+    public void setPlayerChoice() {
         System.out.println("Type 'rock', 'paper', or 'scissors'.");
 
-        playerChoice = input.nextLine();
-        this.playerChoice = playerChoice;
+        try {
+            playerChoice = input.nextLine();
+                this.playerChoice = playerChoice;
+        } catch (InputMismatchException e) {
+            System.out.println("That is not a valid choice, please try again.");
+            e.printStackTrace();
+        }
+    }
+
+    public Boolean checkPlayerChoice(String playerChoice){
+        if(playerChoice.equalsIgnoreCase("rock") || playerChoice.equalsIgnoreCase("paper") || playerChoice.equalsIgnoreCase("scissors")){
+            return isValidChoice = true;
+        } else {
+            return isValidChoice = false;
+        }
     }
 
     public String getPlayerChoice(){
