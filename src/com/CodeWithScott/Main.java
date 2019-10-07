@@ -34,7 +34,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-
         System.out.println("Bonus Branch");
 
         System.out.println("Welcome to Rock, Paper, Scissors \n");
@@ -131,6 +130,8 @@ public class Main {
                     player1.setPlayerWinOrLose(playerWinOrLose, finalOpponentchoice);
 
                     player1.addToGameHistory(gameChoicePlayer1, finalOpponentchoice, playerWinOrLose);
+
+
 
                 } else {
 
